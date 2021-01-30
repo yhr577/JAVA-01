@@ -18,9 +18,9 @@ public class HttpClientDemo {
         URI uri = new URI("http://127.0.0.1:8801");
         HttpGet httpGet = new HttpGet(uri);
         HttpResponse response = httpClient.execute(httpGet);
-        BufferedReader bufferedReader =  new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
         String lineString = "";
-        while((lineString = bufferedReader.readLine())!=null) {
+        while ((lineString = bufferedReader.readLine()) != null) {
             System.out.println(lineString);
 
         }

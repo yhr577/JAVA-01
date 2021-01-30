@@ -15,29 +15,29 @@ public class Hello {
         // 5: iload_2 将第三个int型本地变量推送至栈顶
         // 6: imul 将栈顶两int型数值相乘并将结果压入栈顶
         // 7: istore_3 将栈顶int型数值存入第四个本地变量
-        int d = a*b;
+        int d = a * b;
         // 8: iload_1 将第二个int型本地变量推送至栈顶
         // 9: iload_3 将第四个int型本地变量推送至栈顶
         // 10: iadd  将栈顶两int型数值相加并将结果压入栈顶
         // 11: istore   4 将栈顶int型数值存入第五个本地变量
-        int e = a+d;
+        int e = a + d;
         // 13: iload_1 将第二个int型本地变量推送至栈顶
         // 14: iload_2 如上
         // 15: if_icmple 23 若栈顶两int类型值前小于等于后则跳转。
-        if (a>b){
+        if (a > b) {
             // 18: iload_1
             // 19: iload_2
             // 20: isub 将栈顶两int类型数相减，结果入栈。
             // 21: istore 5
-            int f = a-b;
+            int f = a - b;
         }
         // 23: iload_1
         // 24: iload_2
         // 25: idiv 将栈顶两int类型数相除，结果入栈
         // 26: istore 5
-        int g = a/b;
+        int g = a / b;
         // 28: ldc       #2   // String abc 常量池中的常量值（int, float, string reference, object reference）入栈。
-        String str  = "abc";
+        String str = "abc";
         // 30: astore 6  将栈顶引用类型值保存到局部变量indexbyte中。
         char[] chars = str.toCharArray();
         // 32: iconst_0  将int型(0)推送至栈顶
@@ -52,7 +52,7 @@ public class Hello {
             // 50: invokevirtual #6                  // Method java/io/PrintStream.println:(Ljava/lang/String;)V
             // 53: iinc          7, 1  将整数值constbyte加到indexbyte指定的int类型的局部变量中。
             // 56: goto          35
-            System.out.println("Hello:"+chars[i]);
+            System.out.println("Hello:" + chars[i]);
         }
         // 59: return
     }
