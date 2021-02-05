@@ -12,7 +12,7 @@ http://127.0.0.1:8888/controller/admin/xxxxx
 http://127.0.0.1:8888/controller/test
 
 
-可以看到打印了不同结果
+可以看到打印了不同结果:
 This is springdemo project !!! 
 
 This is springdemo project test !!! 
