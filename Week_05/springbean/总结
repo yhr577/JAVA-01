@@ -1,0 +1,8 @@
+1.注解
+@Component @Service
+通过 @ComponentScan 扫描
+2.自定义starter，添加AutoConfiguration
+3.@Import @Bean
+4.xml里配置
+5.在 setApplicationContext里设置ctx.register(BeanConfig.class);
+
