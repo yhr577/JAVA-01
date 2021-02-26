@@ -1,0 +1,27 @@
+http://127.0.0.1:8099/student/insertforbatch?begin=665000&size=1000
+http://127.0.0.1:8099/student/insertDataBatch?begin=666000&size=1000
+http://127.0.0.1:8099/student/insertTransactionDataBatch?begin=667000&size=1000
+
+
+三个执行结果如下:
+ns         %     Task name
+---------------------------------------------
+117317113300  049%  insertforbatch
+84161457400  035%  insertDataBatch
+38207875500  016%  insertTransactionDataBatch
+
+关闭自动提交能至少2倍提高效率
+
+
+http://127.0.0.1:8099/student/insertTransactionDataBatch?begin=673010&size=1000
+http://127.0.0.1:8099/student/insertHikariCP?begin=671010&size=1000
+http://127.0.0.1:8099/student/insertTransactionHikariCP?begin=672010&size=1000
+
+---------------------------------------------
+ns         %     Task name
+---------------------------------------------
+35892426100  010%  insertTransactionDataBatch
+106169809500  029%  insertHikariCP
+224227576400  061%  insertTransactionHikariCP
+
+

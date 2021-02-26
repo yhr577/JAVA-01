@@ -1,6 +1,5 @@
 package com.rongsoft.springdemo.configuration.entity;
 
-import com.alibaba.fastjson.JSON;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -13,7 +12,7 @@ public class Klass {
     List<Student> students;
 
     public void dong() {
-        System.out.println("班级1所有同学:"+JSON.toJSONString(this.getStudents()));
+        System.out.println("班级1所有同学:"+this.getStudents().toString());
     }
 
 }

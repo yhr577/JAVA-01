@@ -42,7 +42,7 @@ public class Student implements Serializable, BeanNameAware, ApplicationContextA
 
     public void print() {
         System.out.println(this.beanName);
-        System.out.println("   context.getBeanDefinitionNames() ===>> "
+        System.out.println("某位同学student. context.getBeanDefinitionNames() ===>> "
                 + String.join(",", applicationContext.getBeanDefinitionNames()));
 
     }
