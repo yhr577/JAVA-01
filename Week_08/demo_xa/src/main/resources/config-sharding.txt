@@ -1,0 +1,88 @@
+
+schemaName: sharding_db
+
+dataSourceCommon:
+ username: root
+ password: root
+ connectionTimeoutMilliseconds: 30000
+ idleTimeoutMilliseconds: 60000
+ maxLifetimeMilliseconds: 1800000
+ maxPoolSize: 5
+ minPoolSize: 1
+ maintenanceIntervalMilliseconds: 30000
+
+dataSources:
+ ds_0:
+   url: jdbc:mysql://127.0.0.1:3306/test_ds_0?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC
+ ds_1:
+   url: jdbc:mysql://127.0.0.1:3306/test_ds_1?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC
+
+rules:
+- !SHARDING
+  tables:
+    tb_order:
+      actualDataNodes: ds_${0..1}.tb_order_${0..15}
+      databaseStrategy:
+        standard:
+          shardingColumn: user_id
+          shardingAlgorithmName: database_inline
+      tableStrategy:
+        standard:
+          shardingColumn: id
+          shardingAlgorithmName: order_inline
+      keyGenerateStrategy:
+        column: id
+        keyGeneratorName: snowflake
+    tb_users:
+      actualDataNodes: ds_${0..1}.tb_users
+      databaseStrategy:
+        standard:
+          shardingColumn: id
+          shardingAlgorithmName: user_database_inline
+      keyGenerateStrategy:
+        column: id
+        keyGeneratorName: snowflake
+    tb_goods:
+      actualDataNodes: ds_${0..1}.tb_goods
+      databaseStrategy:
+        standard:
+          shardingColumn: belong
+          shardingAlgorithmName: belong_database_inline
+      keyGenerateStrategy:
+        column: id
+        keyGeneratorName: snowflake
+  defaultDatabaseStrategy:
+    standard:
+      shardingColumn: user_id
+      shardingAlgorithmName: database_inline
+  defaultTableStrategy:
+    none:
+  shardingAlgorithms:
+    database_inline:
+      type: INLINE
+      props:
+        algorithm-expression: ds_${user_id % 2}
+        allow-range-query-with-inline-sharding: true
+    user_database_inline:
+      type: INLINE
+      props:
+        algorithm-expression: ds_${id % 2}
+        allow-range-query-with-inline-sharding: true
+    belong_database_inline:
+      type: INLINE
+      props:
+        algorithm-expression: ds_${belong % 2}
+        allow-range-query-with-inline-sharding: true
+    order_inline:
+      type: INLINE
+      props:
+        algorithm-expression: tb_order_${id % 15}
+        allow-range-query-with-inline-sharding: true
+
+  keyGenerators:
+    snowflake:
+      type: SNOWFLAKE
+      props:
+        worker-id: 123
+
+
